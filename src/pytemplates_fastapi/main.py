@@ -1,14 +1,8 @@
-from fastapi import FastAPI
-from pytemplates_fastapi.routes import all_routes
+from pytemplates_fastapi.app import app
+from pytemplates_fastapi.routes import message, root
 
-app = FastAPI()
-
-
-app.include_router(
-    all_routes.router,
-    prefix="",
-)
-
+app.include_router(root.router)
+app.include_router(message.router)
 
 if __name__ == "__main__":
     app()

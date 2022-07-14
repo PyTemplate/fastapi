@@ -1,1 +1,1 @@
-from . import all_routes
+from . import message, root
