@@ -4,7 +4,7 @@
   </a>
 </p>
 
-### A production ready python CLI template
+### A production ready FastAPI template
 
 - Metadata and dependency information is stored in the pyproject.toml for compatibility with both [pip](https://pip.pypa.io/en/stable/) and [poetry](https://python-poetry.org/docs/).
 - [Flake8](https://flake8.pycqa.org/en/latest/), [pylint](https://pylint.pycqa.org/en/latest/index.html), and [isort](https://pycqa.github.io/isort/) configurations are defined to be compatible with the [black](https://black.readthedocs.io/en/stable/) autoformatter.

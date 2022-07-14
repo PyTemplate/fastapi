@@ -49,13 +49,7 @@
 
 ## Installation
 
-To install the package using `pip`:
-
-```bash
-pip install pytemplates_fastapi
-```
-
-To download the CLI application using `docker`:
+To download the application using `docker`:
 
 ```bash
 docker pull pytemplates/fastapi:latest
@@ -63,20 +57,24 @@ docker pull pytemplates/fastapi:latest
 
 ## Usage
 
-Using the python package installation:
+Use a local copy of the [PyTemplates/fastapi](https://github.com/PyTemplate/fastapi) repository:
 
 ```bash
-pytemplates hello user
-pytemplates goodbye user
-pytemplates version
+make start
 ```
 
-Using the docker image:
+Build and run a local docker image:
 
 ```bash
-docker run --rm pytemplates/fastapi hello user
-docker run --rm pytemplates/fastapi goodbye user
-docker run --rm pytemplates/fastapi version
+make build
+make run
+```
+
+Download and run the public docker image:
+
+```bash
+docker pull pytemplates/fastapi:latest
+docker run --rm -p 8001:80 pytemplates/fastapi
 ```
 
 ## Developer Setup
@@ -160,9 +158,7 @@ make build
 To run the image:
 
 ```bash
-docker run --rm pytemplates_fastapi hello user
-docker run --rm pytemplates_fastapi goodbye user
-docker run --rm pytemplates_fastapi version
+make run
 ```
 
 ## Commands

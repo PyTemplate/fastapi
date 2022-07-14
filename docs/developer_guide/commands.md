@@ -8,7 +8,7 @@
 
 - `make check` - Run the test and lint commands.
 
-- `make build` - Build a docker image locally using the Dockerfile. The image will be named *pytemplates_typer_cli*.
+- `make build` - Build a docker image locally using the Dockerfile. The image will be named *pytemplates_fastapi*.
 
 - `make gen-docs` - Generate HTML documentation.
 

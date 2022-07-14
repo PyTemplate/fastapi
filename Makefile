@@ -51,6 +51,12 @@ check: ## run the tests and linting tools
 build: ## build the docker image
 	docker build . -t pytemplates_fastapi
 
+run: ## run the docker image
+	docker run --rm -p 8001:80 pytemplates_fastapi
+
+start: ## start the API
+	uvicorn pytemplates_fastapi.main:app --port=8001
+
 gen-docs: ## generate HTML documentation
 	mkdocs build
 

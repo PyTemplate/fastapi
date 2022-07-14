@@ -1,6 +1,6 @@
 # Developer Setup
 
-To begin local development, clone the [PyTemplates/typer_cli](https://github.com/PyTemplate/typer_cli) repository and use one of the following methods to build it. Commands should be executed from inside of the project home folder.
+To begin local development, clone the [PyTemplates/fastapi](https://github.com/PyTemplate/fastapi) repository and use one of the following methods to build it. Commands should be executed from inside of the project home folder.
 
 ## Using poetry
 
@@ -79,7 +79,5 @@ make build
 To run the image:
 
 ```bash
-docker run --rm pytemplates_typer_cli hello user
-docker run --rm pytemplates_typer_cli goodbye user
-docker run --rm pytemplates_typer_cli version
+make run
 ```

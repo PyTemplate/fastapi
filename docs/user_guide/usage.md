@@ -1,17 +1,21 @@
 # Usage
 
-Using the python package installation:
+Using a local copy of the [PyTemplates/fastapi](https://github.com/PyTemplate/fastapi) repository:
 
 ```bash
-pytemplates hello user
-pytemplates goodbye user
-pytemplates version
+make start
 ```
 
-Using the docker image:
+Building and running a local docker image:
 
 ```bash
-docker run --rm pytemplates/typer_cli hello user
-docker run --rm pytemplates/typer_cli goodbye user
-docker run --rm pytemplates/typer_cli version
+make build
+make run
+```
+
+Pulling and running a public docker image:
+
+```bash
+docker pull pytemplates/fastapi:latest
+docker run --rm -p 8001:80 pytemplates/fastapi
 ```

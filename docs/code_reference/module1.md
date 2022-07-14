@@ -1,3 +1,3 @@
 # Module 1
 
-::: pytemplates_typer_cli.core.module1
+::: pytemplates_fastapi.core.module1
