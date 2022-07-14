@@ -49,7 +49,7 @@ check: ## run the tests and linting tools
 	make lint
 
 build: ## build the docker image
-	docker build . -t pytemplates_typer_cli
+	docker build . -t pytemplates_fastapi
 
 gen-docs: ## generate HTML documentation
 	mkdocs build
@@ -65,4 +65,4 @@ pre-release: ## bump the version and create the release tag
 	bump2version $(increment)
 	git describe --tags --abbrev=0
 	head pyproject.toml | grep version
-	cat src/pytemplates_typer_cli/__version__.py
+	cat src/pytemplates_fastapi/__version__.py

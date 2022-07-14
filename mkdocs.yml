@@ -1,5 +1,5 @@
-site_name: Pytemplates - Typer CLI
-repo_url: https://github.com/PyTemplate/typer_cli
+site_name: Pytemplates - FastAPI
+repo_url: https://github.com/PyTemplate/fastapi
 edit_uri: ./edit/main/docs
 
 # Sticking with readthedocs theme for basic template

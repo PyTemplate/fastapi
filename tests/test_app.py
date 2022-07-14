@@ -1,24 +1,28 @@
-from typer.testing import CliRunner
+from fastapi.testclient import TestClient
+from pytemplates_fastapi.main import app
 
-from pytemplates_typer_cli import __version__
-from pytemplates_typer_cli.main import app
+client = TestClient(app)
 
-runner = CliRunner()
+
+def test_root():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == "Hello PyTemplates User!"
 
 
 def test_hello():
-    result = runner.invoke(app, ["hello", "Jacob"])
-    assert result.exit_code == 0
-    assert "Hello Jacob!" in result.stdout
+    response = client.get("/hello?user=jacob")
+    assert response.status_code == 200
+    assert response.json() == "Hello jacob!"
 
 
 def test_goodbye():
-    result = runner.invoke(app, ["goodbye", "Jacob"])
-    assert result.exit_code == 0
-    assert "Goodbye Jacob!" in result.stdout
+    response = client.get("/goodbye?user=jacob")
+    assert response.status_code == 200
+    assert response.json() == "Goodbye jacob!"
 
 
-def test_version():
-    result = runner.invoke(app, ["version"])
-    assert result.exit_code == 0
-    assert __version__ in result.stdout
+def test_whoami():
+    response = client.get("/whoami")
+    assert response.status_code == 200
+    assert list(response.json().keys()) == ["host_name", "host_ip", "process_id"]

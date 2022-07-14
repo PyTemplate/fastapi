@@ -132,7 +132,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: pytemplates/typer_cli
+        images: pytemplates/fastapi
         tags: |
           type=ref,event=branch
           type=semver,pattern={{version}}

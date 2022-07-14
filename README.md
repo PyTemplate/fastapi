@@ -5,34 +5,34 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/PyTemplate/typer_cli/actions/workflows/test.yaml">
-    <img src="https://github.com/PyTemplate/typer_cli/actions/workflows/test.yaml/badge.svg" alt="Test status">
+  <a href="https://github.com/PyTemplate/fastapi/actions/workflows/test.yaml">
+    <img src="https://github.com/PyTemplate/fastapi/actions/workflows/test.yaml/badge.svg" alt="Test status">
   </a>
 
-  <a href="https://github.com/PyTemplate/typer_cli/actions/workflows/lint.yaml">
-    <img src="https://github.com/PyTemplate/typer_cli/actions/workflows/lint.yaml/badge.svg" alt="Linting status">
+  <a href="https://github.com/PyTemplate/fastapi/actions/workflows/lint.yaml">
+    <img src="https://github.com/PyTemplate/fastapi/actions/workflows/lint.yaml/badge.svg" alt="Linting status">
   </a>
 
-  <!-- <a href="https://github.com/PyTemplate/typer_cli/actions/workflows/release.yaml">
-    <img src="https://github.com/PyTemplate/typer_cli/actions/workflows/release.yaml/badge.svg" alt="Release status">
+  <!-- <a href="https://github.com/PyTemplate/fastapi/actions/workflows/release.yaml">
+    <img src="https://github.com/PyTemplate/fastapi/actions/workflows/release.yaml/badge.svg" alt="Release status">
   </a> -->
 
-  <a href="https://results.pre-commit.ci/latest/github/PyTemplate/typer_cli/main">
-    <img src="https://results.pre-commit.ci/badge/github/PyTemplate/typer_cli/main.svg" alt="pre-commit.ci status">
+  <a href="https://results.pre-commit.ci/latest/github/PyTemplate/fastapi/main">
+    <img src="https://results.pre-commit.ci/badge/github/PyTemplate/fastapi/main.svg" alt="pre-commit.ci status">
   </a>
 
-  <a href="https://codecov.io/gh/PyTemplate/typer_cli">
-    <img src="https://codecov.io/gh/PyTemplate/typer_cli/branch/main/graph/badge.svg?token=HG1NQ8HRA4" alt="Code coverage status">
+  <a href="https://codecov.io/gh/PyTemplate/fastapi">
+    <img src="https://codecov.io/gh/PyTemplate/fastapi/branch/main/graph/badge.svg?token=HG1NQ8HRA4" alt="Code coverage status">
   </a>
 
-  <a href="https://pypi.org/project/pytemplates-typer-cli/">
-    <img src="https://badge.fury.io/py/pytemplates_typer_cli.svg" alt="PyPI version">
+  <a href="https://pypi.org/project/pytemplates-fastapi/">
+    <img src="https://badge.fury.io/py/pytemplates_fastapi.svg" alt="PyPI version">
   </a>
 </p>
 
 ## Description
 
-### A production ready python CLI template
+### A production ready FastAPI template
 
 - Metadata and dependency information is stored in the pyproject.toml for compatibility with both [pip](https://pip.pypa.io/en/stable/) and [poetry](https://python-poetry.org/docs/).
 - [Flake8](https://flake8.pycqa.org/en/latest/), [pylint](https://pylint.pycqa.org/en/latest/index.html), and [isort](https://pycqa.github.io/isort/) configurations are defined to be compatible with the [black](https://black.readthedocs.io/en/stable/) autoformatter.
@@ -45,20 +45,20 @@
 - Documentation is built using [mkdocs](https://www.mkdocs.org/) and [mkdocstrings](https://mkdocstrings.github.io/). Docs are automatically deployed to [github pages](https://docs.github.com/en/pages) during every release.
 - Release notes are automatically generated during every release using [github actions](https://docs.github.com/en/actions).
 
-### [Full Documentation](https://pytemplate.github.io/typer_cli/)
+### [Full Documentation](https://pytemplate.github.io/fastapi/)
 
 ## Installation
 
 To install the package using `pip`:
 
 ```bash
-pip install pytemplates_typer_cli
+pip install pytemplates_fastapi
 ```
 
 To download the CLI application using `docker`:
 
 ```bash
-docker pull pytemplates/typer_cli:latest
+docker pull pytemplates/fastapi:latest
 ```
 
 ## Usage
@@ -74,14 +74,14 @@ pytemplates version
 Using the docker image:
 
 ```bash
-docker run --rm pytemplates/typer_cli hello user
-docker run --rm pytemplates/typer_cli goodbye user
-docker run --rm pytemplates/typer_cli version
+docker run --rm pytemplates/fastapi hello user
+docker run --rm pytemplates/fastapi goodbye user
+docker run --rm pytemplates/fastapi version
 ```
 
 ## Developer Setup
 
-To begin local development, clone the [PyTemplates/typer_cli](https://github.com/PyTemplate/typer_cli) repository and use one of the following methods to build it. Commands should be executed from inside of the project home folder.
+To begin local development, clone the [PyTemplates/fastapi](https://github.com/PyTemplate/fastapi) repository and use one of the following methods to build it. Commands should be executed from inside of the project home folder.
 
 ### Using poetry
 
@@ -160,9 +160,9 @@ make build
 To run the image:
 
 ```bash
-docker run --rm pytemplates_typer_cli hello user
-docker run --rm pytemplates_typer_cli goodbye user
-docker run --rm pytemplates_typer_cli version
+docker run --rm pytemplates_fastapi hello user
+docker run --rm pytemplates_fastapi goodbye user
+docker run --rm pytemplates_fastapi version
 ```
 
 ## Commands
@@ -175,7 +175,7 @@ docker run --rm pytemplates_typer_cli version
 
 - `make check` - Run the test and lint commands.
 
-- `make build` - Build a docker image locally using the Dockerfile. The image will be named *pytemplates_typer_cli*.
+- `make build` - Build a docker image locally using the Dockerfile. The image will be named *pytemplates_fastapi*.
 
 - `make gen-docs` - Generate HTML documentation.
 
@@ -233,7 +233,7 @@ A release should consist of the following two steps from a tested, linted, and u
 ├── pyproject.toml
 ├── README.md
 ├── src
-│   └── pytemplates_typer_cli
+│   └── pytemplates_fastapi
 │       ├── core
 │       │   ├── __init__.py
 │       │   ├── module1.py
