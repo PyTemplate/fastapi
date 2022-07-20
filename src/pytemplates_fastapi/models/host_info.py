@@ -1,10 +1,7 @@
-import os
-import socket
-
 from pydantic import BaseModel
 
 
 class HostInfo(BaseModel):
-    host_name: str = socket.gethostname()
-    host_ip: str = socket.gethostbyname(socket.gethostname())
-    process_id: int = os.getpid()
+    host_name: str
+    host_ip: str
+    process_id: int

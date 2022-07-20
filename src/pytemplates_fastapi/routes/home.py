@@ -1,6 +1,8 @@
+import os
+import socket
+
 from fastapi import APIRouter
-from pytemplates_fastapi.app import app
-from pytemplates_fastapi.models.host_info import HostInfo
+from pytemplates_fastapi import models
 
 router = APIRouter()
 
@@ -10,6 +12,10 @@ def root():
     return "Hello PyTemplates User!"
 
 
-@router.get("/whoami", response_model=HostInfo)
+@router.get("/whoami", response_model=models.HostInfo)
 def whoami():
-    return HostInfo()
+    return models.HostInfo(
+        host_name=socket.gethostname(),
+        host_ip=socket.gethostbyname(socket.gethostname()),
+        process_id=os.getpid(),
+    )

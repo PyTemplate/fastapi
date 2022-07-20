@@ -1,9 +1,7 @@
-from datetime import datetime
-
 from pydantic import BaseModel
 
 
 class Message(BaseModel):
-    id: int
+    id_number: int
     content: str
-    timestamp: str = datetime.utcnow().isoformat()
+    timestamp: str
