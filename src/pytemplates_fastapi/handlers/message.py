@@ -12,17 +12,18 @@ class MessageHandler:
 
     def create(self, content: str):
         """Create a new models.Message and store it in the db."""
+
         if self.session.db:
             next_id_number = max(self.session.db.keys()) + 1
         else:
-            next_id_number = 0
+            next_id_number = 1
+
         message = models.Message(
             id_number=next_id_number,
             content=content,
-            timestamp=datetime.utcnow().isoformat(),
+            last_updated=datetime.utcnow().isoformat(),
         )
-        self.session.db[message.id_number] = message.dict()
-        return f"Created message with ID: {message.id_number}"
+        self.session.db[message.id_number] = message
 
     def read(self, id_number: int):
         message = models.Message.parse_obj(self.session.db[id_number])
@@ -33,14 +34,7 @@ class MessageHandler:
         return messages
 
     def update(self, id_number: int, content: str):
-        message = models.Message(
-            id_number=id_number,
-            content=content,
-            timestamp=datetime.utcnow().isoformat(),
-        )
-        self.session.db[id_number] = message.dict()
-        return message
+        self.session.db[id_number].content = content
 
     def delete(self, id_number: int):
         del self.session.db[id_number]
-        return f"Deleted message with id_number: {id_number}"
