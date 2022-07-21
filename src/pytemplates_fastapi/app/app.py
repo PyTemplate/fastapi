@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pytemplates_fastapi.db.session import session
 
 app = FastAPI()
-# app.router.redirect_slashes = False
 
 origins = [
     "http://localhost",

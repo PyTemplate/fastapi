@@ -10,27 +10,29 @@ class MessageHandler:
     def __init__(self) -> None:
         self.session = session
 
-    def create(self, content: str):
-        """Create a new models.Message and store it in the db."""
-
+    @property
+    def next_id_number(self):
         if self.session.db:
-            next_id_number = max(self.session.db.keys()) + 1
+            next_id = max(self.session.db.keys()) + 1
         else:
-            next_id_number = 1
+            next_id = 1
 
+        return next_id
+
+    def create(self, content: str):
         message = models.Message(
-            id_number=next_id_number,
+            id_number=self.next_id_number,
             content=content,
             last_updated=datetime.utcnow().isoformat(),
         )
         self.session.db[message.id_number] = message
 
     def read(self, id_number: int):
-        message = models.Message.parse_obj(self.session.db[id_number])
+        message = self.session.db[id_number]
         return message
 
     def read_all(self):
-        messages = [models.Message.parse_obj(v) for v in self.session.db.values()]
+        messages = list(self.session.db.values())
         return messages
 
     def update(self, id_number: int, content: str):
