@@ -8,12 +8,12 @@ router = APIRouter()
 
 
 @router.get("/")
-def root():
+def root() -> str:
     return "Hello PyTemplates User!"
 
 
 @router.get("/whoami", response_model=models.HostInfo)
-def whoami():
+def whoami() -> models.HostInfo:
     return models.HostInfo(
         host_name=socket.gethostname(),
         host_ip=socket.gethostbyname(socket.gethostname()),

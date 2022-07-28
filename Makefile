@@ -51,7 +51,8 @@ check: ## run the tests and linting tools
 build: ## build the docker image
 	docker build . -t pytemplates_fastapi
 
-run: ## run the the docker image to launch the API
+run: ## build the docker image and launch the API from a container
+	docker build . -t pytemplates_fastapi
 	docker run --rm -p 8001:80 pytemplates_fastapi
 
 start: ## start a uvicorn server to launch the API

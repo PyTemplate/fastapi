@@ -14,7 +14,7 @@ class ConnectionHandler:
         self.filename = os.path.join(str(Path(__file__).parent), "mock_database.json")
         self.db: Dict[int, models.Message] = {}
 
-    def connect_db(self):
+    def connect_db(self) -> None:
         print("Connecting")
         if os.path.getsize(self.filename) != 0:
             with open(self.filename, "r", encoding="UTF-8") as f:
@@ -25,7 +25,7 @@ class ConnectionHandler:
                 self.db = db
         print(self.db)
 
-    def close_connections(self):
+    def close_connections(self) -> None:
         print("Disconnecting")
         with open(self.filename, "w", encoding="UTF-8") as f:
             data = [v.dict() for v in self.db.values()]

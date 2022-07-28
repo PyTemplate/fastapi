@@ -8,7 +8,7 @@ message_handler = handlers.MessageHandler()
 
 
 @router.post(
-    "/create", status_code=status.HTTP_201_CREATED, response_model=models.HTTPResponse
+    "/", status_code=status.HTTP_201_CREATED, response_model=models.HTTPResponse
 )
 def create_message(content: str = Body(embed=True)) -> models.HTTPResponse:
     message_handler.create(content=content)
@@ -34,11 +34,12 @@ def read_messages(id_number: Optional[int] = None) -> List[models.Message]:
             ) from None
     else:
         messages = message_handler.read_all()
+
     return messages
 
 
-@router.put(
-    "/update/{id_number}",
+@router.patch(
+    "/{id_number}",
     status_code=status.HTTP_202_ACCEPTED,
     response_model=models.HTTPResponse,
     responses={404: {"description": "Not Found", "model": models.HTTPError}},
@@ -54,14 +55,13 @@ def update_message(
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="id_number not found"
         ) from None
-
-    response = models.HTTPResponse(status="UPDATED")
-
-    return response
+    else:
+        response = models.HTTPResponse(status="UPDATED")
+        return response
 
 
 @router.delete(
-    "/delete/{id_number}",
+    "/{id_number}",
     status_code=status.HTTP_202_ACCEPTED,
     response_model=models.HTTPResponse,
     responses={404: {"description": "Not Found", "model": models.HTTPError}},
@@ -75,7 +75,6 @@ def delete_message(id_number: int) -> models.HTTPResponse:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="id_number not found"
         ) from None
-
-    response = models.HTTPResponse(status="DELETED")
-
-    return response
+    else:
+        response = models.HTTPResponse(status="DELETED")
+        return response

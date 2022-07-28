@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 
 from pytemplates_fastapi import models
 from pytemplates_fastapi.db.session import session
@@ -11,7 +12,7 @@ class MessageHandler:
         self.session = session
 
     @property
-    def next_id_number(self):
+    def next_id_number(self) -> int:
         if self.session.db:
             next_id = max(self.session.db.keys()) + 1
         else:
@@ -19,7 +20,7 @@ class MessageHandler:
 
         return next_id
 
-    def create(self, content: str):
+    def create(self, content: str) -> None:
         message = models.Message(
             id_number=self.next_id_number,
             content=content,
@@ -27,16 +28,16 @@ class MessageHandler:
         )
         self.session.db[message.id_number] = message
 
-    def read(self, id_number: int):
+    def read(self, id_number: int) -> models.Message:
         message = self.session.db[id_number]
         return message
 
-    def read_all(self):
+    def read_all(self) -> List[models.Message]:
         messages = list(self.session.db.values())
         return messages
 
-    def update(self, id_number: int, content: str):
+    def update(self, id_number: int, content: str) -> None:
         self.session.db[id_number].content = content
 
-    def delete(self, id_number: int):
+    def delete(self, id_number: int) -> None:
         del self.session.db[id_number]
