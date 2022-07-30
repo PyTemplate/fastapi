@@ -24,10 +24,6 @@
   <a href="https://codecov.io/gh/PyTemplate/fastapi">
     <img src="https://codecov.io/gh/PyTemplate/fastapi/branch/main/graph/badge.svg?token=HG1NQ8HRA4" alt="Code coverage status">
   </a>
-
-  <a href="https://pypi.org/project/pytemplates-fastapi/">
-    <img src="https://badge.fury.io/py/pytemplates_fastapi.svg" alt="PyPI version">
-  </a>
 </p>
 
 ## Description
@@ -57,7 +53,7 @@ docker pull pytemplates/fastapi:latest
 
 ## Usage
 
-Use a local copy of the [PyTemplates/fastapi](https://github.com/PyTemplate/fastapi) repository:
+Run a local uvicorn server:
 
 ```bash
 make start
@@ -189,7 +185,7 @@ make run
 
 - `docker` - Build the docker image, tag it with the branch name, and publish it to dockerhub. Runs on a manual trigger in the github actions tab.
 
-- `release` - Build a wheel distribution, build a docker image, create a github release, and publish to PyPI and Docker Hub whenever a new tag is created. Linting and testing steps must pass before the release steps can begin. Documentation is automatically published to the *docs* branch and hosted on github pages. All github release tags, docker image tags, and PyPI version numbers are in agreement with one another and follow semantic versioning standrads.
+- `release` - Build a docker image, create a github release, and publish to Docker Hub whenever a new tag is created. Linting and testing steps must pass before the release steps can begin. Documentation is automatically published to the *docs* branch and hosted on github pages. All github release tags and docker image tags are in agreement with one another and follow semantic versioning standards.
 
 ## Releases
 
