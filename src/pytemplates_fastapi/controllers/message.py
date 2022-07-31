@@ -5,7 +5,7 @@ from pytemplates_fastapi import models
 from pytemplates_fastapi.db.session import session
 
 
-class MessageHandler:
+class MessageController:
     """Handle CRUD operations for models.Message resources."""
 
     def __init__(self) -> None:

@@ -1,10 +1,10 @@
 from typing import List
 
 from fastapi import APIRouter, Body, HTTPException, Path, status
-from pytemplates_fastapi import handlers, models
+from pytemplates_fastapi import controllers, models
 
 router = APIRouter()
-message_handler = handlers.MessageHandler()
+message_controller = controllers.MessageController()
 
 
 @router.post(
@@ -18,7 +18,7 @@ def create_message(
     )
 ) -> models.MessageCreated:
     """Create a new message and store it in the db."""
-    message = message_handler.create(content=content)
+    message = message_controller.create(content=content)
     response = models.MessageCreated(**message.dict())
     return response
 
@@ -35,7 +35,7 @@ def read_message(
     """Lookup a message in the db by id_number."""
 
     try:
-        message = message_handler.read(id_number=id_number)
+        message = message_controller.read(id_number=id_number)
     except KeyError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="id_number not found"
@@ -52,7 +52,7 @@ def read_message(
 )
 def read_all_messages() -> List[models.Message]:
     """Read all messages from the db."""
-    messages = message_handler.read_all()
+    messages = message_controller.read_all()
     return messages
 
 
@@ -72,7 +72,7 @@ def update_message(
     """Update a message in the db."""
 
     try:
-        new_message = message_handler.update(id_number=id_number, content=content)
+        new_message = message_controller.update(id_number=id_number, content=content)
     except KeyError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="id_number not found"
@@ -94,7 +94,7 @@ def delete_message(
     "Delete a message from the db."
 
     try:
-        message_handler.delete(id_number=id_number)
+        message_controller.delete(id_number=id_number)
     except KeyError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="id_number not found"
