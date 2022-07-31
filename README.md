@@ -45,7 +45,13 @@
 
 ## Installation
 
-To download the application using `docker`:
+Clone a copy of the [Pytemplates/fastapi](https://github.com/PyTemplate/fastapi) repository:
+
+```bash
+git clone https://github.com/PyTemplate/fastapi
+```
+
+Or download the latest image using `docker`:
 
 ```bash
 docker pull pytemplates/fastapi:latest
@@ -159,7 +165,11 @@ make run
 
 ## Commands
 
-- `make clean` - Remove all build, testing, and static documentation files.
+- `make start` - Launch the API from a local uvicorn server.
+
+- `make build` - Build a docker image locally using the Dockerfile. The image will be named *pytemplates_fastapi*.
+
+- `make run` - Launch the API from a local docker container using the *pytemplates_fastapi* image.
 
 - `make test` - Run the tests using pytest.
 
@@ -167,7 +177,7 @@ make run
 
 - `make check` - Run the test and lint commands.
 
-- `make build` - Build a docker image locally using the Dockerfile. The image will be named *pytemplates_fastapi*.
+- `make clean` - Remove all build, testing, and static documentation files.
 
 - `make gen-docs` - Generate HTML documentation.
 

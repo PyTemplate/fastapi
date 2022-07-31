@@ -1,6 +1,6 @@
-from typing import List, Optional
+from typing import List
 
-from fastapi import APIRouter, Body, HTTPException, status
+from fastapi import APIRouter, Body, HTTPException, Path, status
 from pytemplates_fastapi import handlers, models
 
 router = APIRouter()
@@ -8,65 +8,89 @@ message_handler = handlers.MessageHandler()
 
 
 @router.post(
-    "/", status_code=status.HTTP_201_CREATED, response_model=models.HTTPResponse
+    "/",
+    status_code=status.HTTP_201_CREATED,
+    response_model=models.MessageCreated,
 )
-def create_message(content: str = Body(embed=True)) -> models.HTTPResponse:
-    message_handler.create(content=content)
-    response = models.HTTPResponse(status="CREATED")
+def create_message(
+    content: str = Body(
+        description="Content of the message.", example="Hello PyTemplates User!"
+    )
+) -> models.MessageCreated:
+    """Create a new message and store it in the db."""
+    message = message_handler.create(content=content)
+    response = models.MessageCreated(**message.dict())
     return response
+
+
+@router.get(
+    "/{id_number}",
+    status_code=status.HTTP_200_OK,
+    response_model=models.Message,
+    responses={404: {"description": "Not Found", "model": models.NotFoundError}},
+)
+def read_message(
+    id_number: int = Path(default=None, description="Unique ID for the message.", gt=0)
+) -> models.Message:
+    """Lookup a message in the db by id_number."""
+
+    try:
+        message = message_handler.read(id_number=id_number)
+    except KeyError:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="id_number not found"
+        ) from None
+    else:
+        return message
 
 
 @router.get(
     "/",
     status_code=status.HTTP_200_OK,
     response_model=List[models.Message],
-    responses={404: {"description": "Not Found", "model": models.HTTPError}},
+    responses={404: {"description": "Not Found", "model": models.NotFoundError}},
 )
-def read_messages(id_number: Optional[int] = None) -> List[models.Message]:
-    """Read the messages from the db. Optionally filter by id_number."""
-
-    if id_number:
-        try:
-            messages = [message_handler.read(id_number=id_number)]
-        except KeyError:
-            raise HTTPException(
-                status_code=status.HTTP_404_NOT_FOUND, detail="id_number not found"
-            ) from None
-    else:
-        messages = message_handler.read_all()
-
+def read_all_messages() -> List[models.Message]:
+    """Read all messages from the db."""
+    messages = message_handler.read_all()
     return messages
 
 
 @router.patch(
     "/{id_number}",
     status_code=status.HTTP_202_ACCEPTED,
-    response_model=models.HTTPResponse,
-    responses={404: {"description": "Not Found", "model": models.HTTPError}},
+    response_model=models.MessageUpdated,
+    responses={404: {"description": "Not Found", "model": models.NotFoundError}},
 )
 def update_message(
-    id_number: int, content: str = Body(embed=True)
-) -> models.HTTPResponse:
+    id_number: int = Path(description="Unique ID for the message.", gt=0),
+    content: str = Body(
+        description="New content of the message.",
+        example="Hello Again PyTemplates User!",
+    ),
+) -> models.MessageUpdated:
     """Update a message in the db."""
 
     try:
-        message_handler.update(id_number=id_number, content=content)
+        new_message = message_handler.update(id_number=id_number, content=content)
     except KeyError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, detail="id_number not found"
         ) from None
     else:
-        response = models.HTTPResponse(status="UPDATED")
+        response = models.MessageUpdated(**new_message.dict())
         return response
 
 
 @router.delete(
     "/{id_number}",
     status_code=status.HTTP_202_ACCEPTED,
-    response_model=models.HTTPResponse,
-    responses={404: {"description": "Not Found", "model": models.HTTPError}},
+    response_model=models.MessageDeleted,
+    responses={404: {"description": "Not Found", "model": models.NotFoundError}},
 )
-def delete_message(id_number: int) -> models.HTTPResponse:
+def delete_message(
+    id_number: int = Path(description="Unique ID for the message.", gt=0)
+) -> models.MessageDeleted:
     "Delete a message from the db."
 
     try:
@@ -76,5 +100,5 @@ def delete_message(id_number: int) -> models.HTTPResponse:
             status_code=status.HTTP_404_NOT_FOUND, detail="id_number not found"
         ) from None
     else:
-        response = models.HTTPResponse(status="DELETED")
+        response = models.MessageDeleted(id_number=id_number)
         return response

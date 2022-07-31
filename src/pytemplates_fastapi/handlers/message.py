@@ -20,13 +20,14 @@ class MessageHandler:
 
         return next_id
 
-    def create(self, content: str) -> None:
+    def create(self, content: str) -> models.Message:
         message = models.Message(
             id_number=self.next_id_number,
             content=content,
             last_updated=datetime.utcnow().isoformat(),
         )
         self.session.db[message.id_number] = message
+        return message
 
     def read(self, id_number: int) -> models.Message:
         message = self.session.db[id_number]
@@ -36,8 +37,9 @@ class MessageHandler:
         messages = list(self.session.db.values())
         return messages
 
-    def update(self, id_number: int, content: str) -> None:
+    def update(self, id_number: int, content: str) -> models.Message:
         self.session.db[id_number].content = content
+        return self.session.db[id_number]
 
     def delete(self, id_number: int) -> None:
         del self.session.db[id_number]

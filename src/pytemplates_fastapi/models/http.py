@@ -1,6 +1,6 @@
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class Status(str, Enum):
@@ -13,5 +13,5 @@ class HTTPResponse(BaseModel):
     status: Status
 
 
-class HTTPError(BaseModel):
-    detail: str
+class NotFoundError(BaseModel):
+    detail: str = Field(default="id_number not found.")

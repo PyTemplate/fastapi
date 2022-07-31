@@ -54,7 +54,7 @@ build: ## build the docker image
 run: ## launch the API from a docker container
 	docker run --rm -p 8001:80 pytemplates_fastapi
 
-start: ## launch the API from a local uvicorn server
+start: ## launch the API from a uvicorn server
 	uvicorn pytemplates_fastapi.app.main:app --port=8001 --reload
 
 gen-docs: ## generate HTML documentation

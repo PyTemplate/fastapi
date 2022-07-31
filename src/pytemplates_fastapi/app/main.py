@@ -1,9 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from pytemplates_fastapi import __version__
 from pytemplates_fastapi.app.router import router
 from pytemplates_fastapi.db.session import session
 
-app = FastAPI()
+app = FastAPI(
+    title="PyTemplates",
+    version=__version__,
+    description="A production ready FastAPI template.",
+)
 
 origins = [
     "http://localhost",
