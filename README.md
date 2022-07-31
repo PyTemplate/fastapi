@@ -210,11 +210,6 @@ A release should consist of the following two steps from a tested, linted, and u
 .
 ├── Dockerfile
 ├── docs
-│   ├── app_reference
-│   │   └── app.md
-│   ├── code_reference
-│   │   ├── module1.md
-│   │   └── module2.md
 │   ├── developer_guide
 │   │   ├── commands.md
 │   │   ├── developer_setup.md
@@ -235,18 +230,35 @@ A release should consist of the following two steps from a tested, linted, and u
 ├── README.md
 ├── src
 │   └── pytemplates_fastapi
-│       ├── core
+│       ├── app
+│       │   ├── main.py
+│       │   └── router.py
+│       ├── controllers
 │       │   ├── __init__.py
-│       │   ├── module1.py
-│       │   └── module2.py
+│       │   └── message.py
+│       ├── db
+│       │   ├── connections.py
+│       │   ├── __init__.py
+│       │   ├── mock_database.json
+│       │   └── session.py
 │       ├── __init__.py
-│       ├── main.py
+│       ├── models
+│       │   ├── host_info.py
+│       │   ├── http.py
+│       │   ├── __init__.py
+│       │   └── message.py
+│       ├── routes
+│       │   ├── home.py
+│       │   ├── __init__.py
+│       │   └── messages.py
 │       └── __version__.py
 └── tests
+    ├── conftest.py
     ├── __init__.py
-    ├── test_app.py
-    ├── test_module1.py
-    └── test_module2.py
+    ├── test_database.json
+    ├── test_home.py
+    ├── test_messages.py
+    └── test_performance.py
 ```
 
 ## Credits
