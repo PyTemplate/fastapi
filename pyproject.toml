@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pytemplates_fastapi"
-version = "0.0.0"
+version = "0.0.1"
 description = "A production ready python CLI template."
 repository = "https://github.com/PyTemplate/fastapi"
 authors = ["crabtr26 <crabtr26@gmail.com>"]
