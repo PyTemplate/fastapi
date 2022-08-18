@@ -191,7 +191,7 @@ make run
 
 - `docker` - Build the docker image, tag it with the branch name, and publish it to dockerhub. Runs on a manual trigger in the github actions tab.
 
-- `release` - Build a docker image, create a github release, and publish to Docker Hub whenever a new tag is created. Linting and testing steps must pass before the release steps can begin. Documentation is automatically published to the *docs* branch and hosted on github pages. All github release tags and docker image tags are in agreement with one another and follow semantic versioning standards.
+- `release` - Build a docker image, create a github release, and publish to Docker Hub whenever a new tag is created. Linting and testing steps must pass before the release steps can begin. All github release tags and docker image tags are in agreement with one another and follow semantic versioning standards.
 
 ## Releases
 
