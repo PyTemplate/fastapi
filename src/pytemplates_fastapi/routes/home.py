@@ -2,6 +2,7 @@ import os
 import socket
 
 from fastapi import APIRouter
+
 from pytemplates_fastapi import models
 
 router = APIRouter()
