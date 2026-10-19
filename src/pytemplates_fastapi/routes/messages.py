@@ -1,6 +1,7 @@
 from typing import List
 
 from fastapi import APIRouter, Body, HTTPException, Path, status
+
 from pytemplates_fastapi import controllers, models
 
 router = APIRouter()
