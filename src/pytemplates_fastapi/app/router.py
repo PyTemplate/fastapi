@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+
 from pytemplates_fastapi.routes import home, messages
 
 router = APIRouter()
