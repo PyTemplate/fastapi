@@ -1,6 +1,6 @@
 import pytest
-
 from fastapi.testclient import TestClient
+
 from pytemplates_fastapi.app.main import app
 
 
